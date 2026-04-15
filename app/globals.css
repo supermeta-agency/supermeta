@@ -2,25 +2,83 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #0f0f11;
+  --primary: #0000EE;
+  --primary-dark: #0001ab;
+  --surface-low: #f5f2ff;
+  --surface-card: #ffffff;
+  --on-surface-variant: #454557;
+  --secondary-container: #cee5ff;
+  --on-secondary-container: #004f7d;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-display: var(--font-jakarta);
+  --font-sans: var(--font-inter);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter, system-ui, sans-serif);
+}
+
+/* ── Entrance animations ── */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+.animate-fade-up          { animation: fade-up 0.75s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.animate-fade-up-delay-1  { animation: fade-up 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.08s both; }
+.animate-fade-up-delay-2  { animation: fade-up 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.18s both; }
+.animate-fade-up-delay-3  { animation: fade-up 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.30s both; }
+
+/* ── Pulse dot ── */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1;   }
+  50%       { opacity: 0.4; }
+}
+.animate-pulse-dot { animation: pulse-dot 2s ease-in-out infinite; }
+
+/* ── Premium blob drifts — extremely subtle, slow ── */
+@keyframes blob-a {
+  0%, 100% { transform: translate(0px,  0px) scale(1);    }
+  40%       { transform: translate(22px, -18px) scale(1.03); }
+  70%       { transform: translate(-14px, 12px) scale(0.98); }
+}
+
+@keyframes blob-b {
+  0%, 100% { transform: translate(0px, 0px) scale(1);    }
+  35%       { transform: translate(-18px, 16px) scale(1.02); }
+  65%       { transform: translate(16px, -12px) scale(0.99); }
+}
+
+@keyframes blob-c {
+  0%, 100% { transform: translate(0px, 0px) scale(1);    }
+  50%       { transform: translate(10px, -20px) scale(1.03); }
+}
+
+.blob-a { animation: blob-a 22s ease-in-out infinite; }
+.blob-b { animation: blob-b 26s ease-in-out infinite; }
+.blob-c { animation: blob-c 18s ease-in-out infinite; }
+
+/* ── Float (logo etc) ── */
+@keyframes float {
+  0%, 100% { transform: translateY(0px);  }
+  50%       { transform: translateY(-8px); }
+}
+.animate-float { animation: float 5s ease-in-out infinite; }
+
+/* ── Aurora shimmer — sweeps left ↔ right ── */
+@keyframes aurora-shimmer {
+  0%   { background-position: 100% 50%; }
+  50%  { background-position: 0%   50%; }
+  100% { background-position: 100% 50%; }
+}
+.aurora-shimmer {
+  background-size: 300% 300%;
+  animation: aurora-shimmer 14s ease-in-out infinite;
 }
