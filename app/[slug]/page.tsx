@@ -5,7 +5,7 @@ import Faq from "../components/Faq";
 import JsonLd from "../components/JsonLd";
 import ServiceFinder from "../components/ServiceFinder";
 import { AdCard, LeadFeed, MonitorFeed, RedditThread, RulesCheck, Serp, SubredditCard } from "../components/Mocks";
-import { Upvote } from "../components/Icons";
+import PixelIcon from "../components/PixelIcon";
 import { BOOK_URL, SERVICES, SITE, serviceBySlug, type MockKind } from "../lib/site";
 import Link from "next/link";
 
@@ -90,23 +90,23 @@ export default async function ServicePage({ params }: Props) {
             <nav className="crumbs" aria-label="Breadcrumb">
               <Link href="/">home</Link><span>/</span><Link href="/services">services</Link><span>/</span><span>{s.name}</span>
             </nav>
-            <div style={{ marginTop: 22 }}><span className="pill">{s.eyebrow}</span></div>
+            <div style={{ marginTop: 22 }}><span className="pill"><PixelIcon name={s.icon} size={16} /> {s.eyebrow}</span></div>
             <h1>{s.h1}</h1>
             <p className="lede">{s.intro}</p>
             <div className="hero-ctas" style={{ marginTop: 26 }}>
               <div>
-                <a href={BOOK_URL} className="btn btn-blue">book a free call</a>
+                <a href={BOOK_URL} className="btn btn-primary">book a free call</a>
                 <div className="btn-note">30 minutes. no pitch deck.</div>
               </div>
               <div>
-                <a href="#included" className="btn btn-gray">what&apos;s included</a>
+                <a href="#included" className="btn btn-secondary">what&apos;s included</a>
                 <div className="btn-note">billed monthly</div>
               </div>
             </div>
           </div>
           <div className="svc-media rise rise-2">
             <Window title={s.file} tag="sample" caption={s.file}><Mock kind={s.mock} /></Window>
-            <div className="float" style={{ left: -34, bottom: -8 }}><span className="sticker-vote"><Upvote size={26} color="#fff" /></span></div>
+            <div className="float" style={{ left: -30, bottom: -18 }}><PixelIcon name={s.icon} size={56} motion="bob" /></div>
             <span className="kao" style={{ right: 4, top: -30 }}>{"{ ^-^ }"}</span>
           </div>
         </div>
@@ -115,7 +115,7 @@ export default async function ServicePage({ params }: Props) {
       <section className="sec" id="included" aria-labelledby="inc-h">
         <div className="wrap">
           <div className="sec-head">
-            <span className="pill">what&apos;s included</span>
+            <span className="pill"><PixelIcon name="scroll" size={16} /> tl;dr: what&apos;s included</span>
             <h2 id="inc-h" className="display h-sec">what you get</h2>
           </div>
           <div className="grid-cards">
@@ -132,7 +132,7 @@ export default async function ServicePage({ params }: Props) {
       <section className="sec-tight" aria-labelledby="steps-h">
         <div className="wrap">
           <div className="sec-head">
-            <span className="pill">how it works</span>
+            <span className="pill"><PixelIcon name="crayon" size={16} /> eli5: how it works</span>
             <h2 id="steps-h" className="display h-sec">how we run it</h2>
           </div>
           <Window title={`${s.slug}.sh`} tint="dark" className="term" style={{ maxWidth: 860, margin: "0 auto" }}>
@@ -180,12 +180,12 @@ export default async function ServicePage({ params }: Props) {
         </div>
       </section>
 
-      <Faq items={s.faqs} title={`${s.name} faq`} />
+      <Faq items={s.faqs} pill="ama" title={`${s.name} faq`} />
 
       <section className="sec-tight" aria-labelledby="rel-h">
         <div className="wrap">
           <div className="sec-head" style={{ marginBottom: 28 }}>
-            <span className="pill">pairs well with</span>
+            <span className="pill"><PixelIcon name="heart" size={16} /> pairs well with</span>
             <h2 id="rel-h" className="sr-only">Related services</h2>
           </div>
           <ServiceFinder items={related} />
@@ -197,10 +197,10 @@ export default async function ServicePage({ params }: Props) {
 
       <section className="sec dotted" aria-labelledby="cta-h">
         <div className="wrap cta-band">
-          <span className="pill">ready when you are</span>
+          <span className="pill"><PixelIcon name="upvote" size={16} /> take my upvote</span>
           <h2 id="cta-h" className="display h-sec">see where you stand on reddit</h2>
           <p className="lede muted">A free 30-minute call. We show you the threads in your category and who gets recommended today.</p>
-          <a href={BOOK_URL} className="btn btn-blue">book a free call</a>
+          <a href={BOOK_URL} className="btn btn-primary">book a free call</a>
         </div>
       </section>
 

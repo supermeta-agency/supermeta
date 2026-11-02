@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Window from "./Window";
+import PixelIcon, { Px } from "./PixelIcon";
 import type { Service } from "../lib/site";
 
 // Services shown as a Finder window in list view; each row links to its service page.
@@ -17,10 +18,10 @@ export default function ServiceFinder({ items, full = false }: { items: Service[
       ) : null}
       {items.map((s) => (
         <Link key={s.slug} href={`/${s.slug}`} className="finder-row">
-          <span className="finder-name"><span className="icon-folder" />{s.name}</span>
+          <span className="finder-name"><PixelIcon name={s.icon} size={30} />{s.name}</span>
           <span className="small">{s.short}</span>
           <span className="tiny">{s.bestFor}</span>
-          <span className="finder-chev">›</span>
+          <span className="finder-chev"><Px name="chevron-right" size={18} /></span>
         </Link>
       ))}
     </Window>

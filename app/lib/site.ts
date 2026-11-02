@@ -12,6 +12,8 @@ export const SITE = {
 // Swap for a Calendly or Cal.com link when one exists.
 export const BOOK_URL = `mailto:${SITE.email}?subject=${encodeURIComponent("Reddit marketing call")}`;
 
+import type { PixelIconName } from "./pixel-icons";
+
 export type Faq = { q: string; a: string[] };
 export type Item = { t: string; d: string };
 export type MockKind = "serp" | "thread" | "feed" | "leads" | "subreddit" | "ad";
@@ -19,6 +21,7 @@ export type MockKind = "serp" | "thread" | "feed" | "leads" | "subreddit" | "ad"
 export type Service = {
   slug: string;
   name: string;
+  icon: PixelIconName;
   serviceName: string;
   short: string;
   bestFor: string;
@@ -40,6 +43,7 @@ export type Service = {
 export const SERVICES: Service[] = [
   {
     slug: "reddit-seo",
+    icon: "trophy",
     name: "reddit seo & aeo",
     serviceName: "Reddit SEO and AEO strategy",
     short: "Find the threads Google ranks and AI answers cite for your category, and a playbook to win them.",
@@ -83,6 +87,7 @@ export const SERVICES: Service[] = [
   },
   {
     slug: "reddit-posting",
+    icon: "bubble",
     name: "branded posting & comments",
     serviceName: "Branded Reddit posting and commenting",
     short: "Posts and comments from your brand's own, clearly labeled account. Helpful first, product second.",
@@ -125,6 +130,7 @@ export const SERVICES: Service[] = [
   },
   {
     slug: "reddit-monitoring",
+    icon: "popcorn",
     name: "keyword monitoring",
     serviceName: "Reddit keyword monitoring",
     short: "A daily, human-filtered list of the threads worth answering: brand, category and competitor mentions.",
@@ -166,6 +172,7 @@ export const SERVICES: Service[] = [
   },
   {
     slug: "reddit-lead-generation",
+    icon: "diamond",
     name: "lead discovery & outreach",
     serviceName: "Reddit lead generation and outreach",
     short: "People asking for what you sell, found, qualified and handed over with context. No spam DMs.",
@@ -206,6 +213,7 @@ export const SERVICES: Service[] = [
   },
   {
     slug: "reddit-community-management",
+    icon: "heart",
     name: "subreddit setup & management",
     serviceName: "Subreddit setup and Reddit community management",
     short: "Your own branded subreddit, set up properly and run every week: rituals, moderation, growth and posting.",
@@ -247,6 +255,7 @@ export const SERVICES: Service[] = [
   },
   {
     slug: "reddit-ads",
+    icon: "rocket",
     name: "reddit ads",
     serviceName: "Reddit Ads management",
     short: "Reddit ad campaigns that read like Reddit, aimed at the communities your buyers already read.",
@@ -379,6 +388,7 @@ export const RECEIPTS = [
     who: "reddit, inc.",
     handle: "q3 2026 results",
     num: "130.3M",
+    icon: "heart" as PixelIconName,
     text: "daily active uniques on Reddit in Q3 2026, up 12% year over year.",
     src: "Reddit Q3 2026 results, Oct 29, 2026",
     href: "https://www.sec.gov/Archives/edgar/data/0001713445/000171344526000114/earningspressreleaseq326.htm",
@@ -388,6 +398,7 @@ export const RECEIPTS = [
     who: "semrush",
     handle: "230K prompts, 13 weeks",
     num: "top 5",
+    icon: "trophy" as PixelIconName,
     text: "Reddit was one of the five most-cited domains on ChatGPT, Google AI Mode and Perplexity.",
     src: "Semrush, Jul to Oct 2025",
     href: "https://www.semrush.com/blog/most-cited-domains-ai/",
@@ -397,6 +408,7 @@ export const RECEIPTS = [
     who: "semrush",
     handle: "organic rankings",
     num: "~263M",
+    icon: "scroll" as PixelIconName,
     text: "Google keywords Reddit ranks for, per Semrush's organic rankings data.",
     src: "Semrush, Nov 2025",
     href: "https://www.semrush.com/blog/most-cited-domains-ai/",
@@ -406,6 +418,7 @@ export const RECEIPTS = [
     who: "reddit, inc.",
     handle: "q3 2026 results",
     num: "515.2M",
+    icon: "upvote" as PixelIconName,
     text: "weekly active uniques in the same quarter, up 16% year over year.",
     src: "Reddit Q3 2026 results, Oct 29, 2026",
     href: "https://www.sec.gov/Archives/edgar/data/0001713445/000171344526000114/earningspressreleaseq326.htm",
@@ -415,6 +428,7 @@ export const RECEIPTS = [
     who: "reuters",
     handle: "feb 22, 2024",
     num: "~$60M/yr",
+    icon: "gold" as PixelIconName,
     text: "the reported value of Google's deal to license Reddit content for AI, per one source.",
     src: "Reuters (via The Star), Feb 22, 2024",
     href: "https://www.thestar.com.my/tech/tech-news/2024/02/22/exclusive-reddit-in-ai-content-licensing-deal-with-google-sources-say",
@@ -424,6 +438,7 @@ export const RECEIPTS = [
     who: "semrush",
     handle: "sept 2025",
     num: "overnight",
+    icon: "fire" as PixelIconName,
     text: "ChatGPT suddenly cited Reddit far less in Sept 2025. AI visibility is volatile, so we track it every week.",
     src: "Semrush, Nov 2025",
     href: "https://www.semrush.com/blog/most-cited-domains-ai/",
@@ -493,6 +508,7 @@ export const HOME_FAQS: Faq[] = [
 export const PLANS = [
   {
     name: "audit",
+    icon: "scroll" as PixelIconName,
     line: "the plan. you run it.",
     best: "best for in-house teams",
     big: "1 playbook",
@@ -502,6 +518,7 @@ export const PLANS = [
   },
   {
     name: "always on",
+    icon: "fire" as PixelIconName,
     line: "we run reddit for you.",
     best: "best for steady growth",
     big: "every day",
@@ -512,6 +529,7 @@ export const PLANS = [
   },
   {
     name: "community",
+    icon: "cake" as PixelIconName,
     line: "your own subreddit, run right.",
     best: "best for products with users",
     big: "r/yours",

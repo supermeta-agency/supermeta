@@ -1,38 +1,6 @@
-import { SERVICES, SITE } from "../lib/site";
-import { Trash } from "./Icons";
 import Link from "next/link";
-
-// 9-row pixel font (rows 0-1 ascender, 2-6 x-height, 7-8 descender). "#" = a folder.
-const GLYPHS: Record<string, string[]> = {
-  s: ["....", "....", ".###", "#...", ".##.", "...#", "###.", "....", "...."],
-  u: ["....", "....", "#..#", "#..#", "#..#", "#..#", ".###", "....", "...."],
-  p: ["....", "....", "###.", "#..#", "#..#", "#..#", "###.", "#...", "#..."],
-  e: ["....", "....", ".##.", "#..#", "####", "#...", ".###", "....", "...."],
-  r: ["....", "....", "#.##", "##..", "#...", "#...", "#...", "....", "...."],
-  m: [".....", ".....", "##.#.", "#.#.#", "#.#.#", "#.#.#", "#.#.#", ".....", "....."],
-  t: ["....", ".#..", "####", ".#..", ".#..", ".#..", "..##", "....", "...."],
-  a: ["....", "....", ".##.", "...#", ".###", "#..#", ".###", "....", "...."],
-};
-
-function PixelWord({ word }: { word: string }) {
-  const letters = word.split("").map((c) => GLYPHS[c]);
-  const rows = Array.from({ length: 9 }, (_, r) => letters.map((g) => g[r]).join("."));
-  const cols = rows[0].length;
-  return (
-    <div className="pixel-word" aria-hidden="true">
-      <div
-        className="pixel-grid"
-        style={{
-          gridTemplateColumns: `repeat(${cols}, var(--cell))`,
-          // Fit the row of folders (plus 1px gaps) inside the page gutter, capped at 25px a cell.
-          ["--cell" as string]: `min(calc((min(100vw, var(--max)) - 2 * var(--gutter) - ${cols - 1}px) / ${cols}), 25px)`,
-        }}
-      >
-        {rows.flatMap((row, r) => row.split("").map((ch, c) => (ch === "#" ? <i key={`${r}-${c}`} /> : <b key={`${r}-${c}`} />)))}
-      </div>
-    </div>
-  );
-}
+import { SERVICES, SITE } from "../lib/site";
+import PixelIcon from "./PixelIcon";
 
 export default function Footer() {
   return (
@@ -72,13 +40,15 @@ export default function Footer() {
             <h4>disclaimer</h4>
             <p className="disc">
               SuperMeta is an independent agency and is not affiliated with, endorsed by or sponsored by Reddit, Inc.
-              Product mockups on this site show sample data.
+              Product mockups on this site show sample data. Pixel icons are our own; UI icons are Pixelarticons (MIT).
             </p>
           </div>
         </div>
-        <PixelWord word="supermeta" />
-        <span className="footer-trash"><Trash /></span>
-        <div className="footer-copy">© SuperMeta {new Date().getFullYear()}. reddit marketing, nothing else.</div>
+        <div className="footer-word" aria-hidden="true">
+          <span className="w">super<span className="px-word">meta</span></span>
+          <span className="footer-scale"><PixelIcon name="banana" size={64} motion="wiggle" />banana for scale</span>
+        </div>
+        <div className="footer-copy">© SuperMeta {new Date().getFullYear()}. reddit marketing, nothing else. edit: thanks for reading this far.</div>
       </div>
     </footer>
   );

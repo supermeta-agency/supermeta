@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import Window, { type Tint } from "./components/Window";
-import JourneyWindow from "./components/JourneyWindow";
+import Motion from "./components/Motion";
 import Faq from "./components/Faq";
 import ServiceFinder from "./components/ServiceFinder";
-import { AiAnswer, MonitorFeed, RedditThread, RulesCheck, Serp } from "./components/Mocks";
-import { Upvote } from "./components/Icons";
+import PixelIcon, { Px, type PixelMotion } from "./components/PixelIcon";
+import { AiAnswer, RedditThread } from "./components/Mocks";
+import type { PixelIconName } from "./lib/pixel-icons";
 import { BOOK_URL, HOME_FAQS, PLANS, RECEIPTS, SERVICES } from "./lib/site";
-import Link from "next/link";
 
 export const metadata: Metadata = {
   title: { absolute: "Reddit Marketing Agency for Startups and SaaS | SuperMeta" },
@@ -15,37 +16,42 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
-const WAVE = [6, 10, 6, 14, 18, 12, 20, 14, 8, 12, 6, 4];
-
-function Wave() {
-  return (
-    <div className="wave" aria-hidden="true">
-      {WAVE.map((h, i) => (
-        <i key={i} style={{ height: h, opacity: 0.25 + (i % 5) * 0.15 }} />
-      ))}
-    </div>
-  );
-}
+// Desktop icons scattered around the hero, each a bit of Reddit lingo.
+const DESK: { icon: PixelIconName; label: string; motion: PixelMotion; pos: React.CSSProperties; cls?: string }[] = [
+  { icon: "banana", label: "for-scale.png", motion: "wiggle", pos: { left: "21%", top: 92 } },
+  { icon: "cake", label: "cake-day.ics", motion: "none", pos: { left: "21%", top: 300 } },
+  { icon: "meme", label: "meme.jpg", motion: "none", pos: { left: "12%", top: 410 }, cls: "float-hide-md" },
+  { icon: "fkey", label: "press-f.key", motion: "none", pos: { left: "3%", top: 500 }, cls: "float-low" },
+  { icon: "gold", label: "gold.award", motion: "spin", pos: { right: "21%", top: 100 } },
+  { icon: "popcorn", label: "drama.gif", motion: "bob", pos: { right: "4%", top: 300 } },
+  { icon: "rocket", label: "to-the-moon.exe", motion: "none", pos: { right: "12%", top: 410 }, cls: "float-hide-md" },
+  { icon: "potato", label: "480p.mp4", motion: "none", pos: { right: "3%", top: 510 }, cls: "float-low" },
+];
 
 const FEATURES = [
   {
-    file: "page-one.png",
+    icon: "trophy" as PixelIconName,
+    motion: "bounce" as PixelMotion,
+    file: "page-one.mp4",
     title: "rank in the threads google shows",
     body: "We map the Reddit threads that sit on page one for your buyer keywords, then earn your place in them. A good answer in the right thread can outrank your own homepage.",
     href: "/reddit-seo",
     more: "how reddit seo works",
-    media: <Serp />,
+    media: <Motion clip="climb" />,
   },
   {
-    file: "todays-threads.txt",
+    icon: "popcorn" as PixelIconName,
+    motion: "bob" as PixelMotion,
+    file: "todays-threads.mp4",
     title: "be the first helpful reply",
     body: "We watch your brand, your competitors and every \"what's the best tool for\" post in your category. You get the threads worth answering while they are still young.",
     href: "/reddit-monitoring",
     more: "how monitoring works",
-    media: <MonitorFeed />,
-    bubble: "supermet",
+    media: <Motion clip="feed" />,
   },
   {
+    icon: "bulb" as PixelIconName,
+    motion: "none" as PixelMotion,
     file: "ai-answer.png",
     title: "show up when buyers ask ai",
     body: "ChatGPT, Perplexity and Google's AI answers lean on Reddit. We track which threads they cite for your category and make sure your brand is in the conversation.",
@@ -55,67 +61,54 @@ const FEATURES = [
   },
 ];
 
-const FAN_LEFT = ["#efc3ff", "#e7a8ff", "#e08cff", "#d870f5", "#ef6fd0", "#f46fb4", "#ff78a0"];
-const FAN_RIGHT = ["#c7f0a0", "#b2e68a", "#9edc74", "#cfe07a", "#e3dd7a", "#efd88a", "#f3d79c"];
+const STACK_L: PixelIconName[] = ["upvote", "banana", "cake", "heart", "scroll", "crayon"];
+const STACK_R: PixelIconName[] = ["gold", "fire", "mic", "diamond", "bubble", "trophy"];
 
 export default function Home() {
   return (
     <>
-      {/* ── HERO: a desktop full of reddit ── */}
-      <section className="hero dotted">
-        <div className="float bob" style={{ left: "2.5%", top: 70, width: 232, rotate: "-2deg" }}>
-          <Window title="r-saas-thread.png" caption="r-saas-thread.png">
+      {/* ── HERO: a desktop full of reddit lingo ── */}
+      <section className="hero">
+        <div className="float bob" style={{ left: "2.5%", top: 64, width: 228, rotate: "-2deg" }}>
+          <Window title="r-marketing.png" caption="r-marketing.png">
             <RedditThread title="Is Reddit marketing worth it for B2B? Every brand post I see gets roasted" votes={312} comments={146} sub="r/marketing" />
           </Window>
         </div>
-        <div className="float float-low bob-2" style={{ left: "3%", top: 470, width: 200, rotate: "1.5deg" }}>
-          <Window title="rules-check.txt" caption="rules-check.txt"><RulesCheck /></Window>
-        </div>
-        <div className="float bob-2" style={{ right: "2.5%", top: 60, width: 250, rotate: "2deg" }}>
-          <Window title="ai-answer.png" caption="ai-answer.png"><AiAnswer question="best feedback tool for a small saas?" /></Window>
-        </div>
-        <div className="float float-low bob" style={{ right: "3%", top: 500, width: 200, rotate: "-1.5deg" }}>
-          <Window title="karma.txt" caption="karma.txt">
-            <div className="rd mono" style={{ fontSize: 12 }}>
+        <div className="float bob-2" style={{ right: "2.5%", top: 60, width: 214, rotate: "2deg" }}>
+          <Window title="karma.txt" caption="karma.txt" tint="yellow">
+            <div className="rd mono" style={{ fontSize: 12, lineHeight: "19px" }}>
               <div>account: u/acme_team</div>
               <div>flair: acme staff</div>
-              <div>history: helpful first</div>
-              <div style={{ color: "#1d9a45" }}>status: trusted ^_^</div>
+              <div>style: helpful first</div>
+              <div style={{ color: "#1d9a6a" }}>status: trusted ^_^</div>
             </div>
           </Window>
         </div>
-
-        <div className="float" style={{ left: "24%", top: 46 }}>
-          <div className="sticker-hello"><b>HELLO</b><small>my name is</small><span>supermeta</span></div>
-        </div>
-        <div className="float float-hide-md" style={{ right: "21%", top: 300, rotate: "12deg" }}>
-          <div className="sticker-hello" data-red=""><b>HELLO</b><small>my name is</small><span>u/you</span></div>
-        </div>
-        <div className="float" style={{ left: "21%", top: 300 }}><span className="sticker-vote"><Upvote size={26} color="#fff" /></span></div>
-        <div className="float float-hide-md" style={{ right: "24%", top: 120 }}><span className="sticker-stamp">no spam</span></div>
-        <div className="float" style={{ left: "14%", top: 330 }}><span className="icon-folder" style={{ display: "block" }} /></div>
-        <div className="float" style={{ right: "19%", top: 420 }}><span className="icon-folder" style={{ display: "block" }} /></div>
-
-        <span className="kao" style={{ left: "27%", top: 210 }}>^ ω ^</span>
-        <span className="kao" style={{ right: "26%", top: 60 }}>{"¯\\_(ツ)_/¯"}</span>
-        <span className="kao" style={{ left: "27%", top: 430 }}>(¬_¬)</span>
-        <span className="kao" style={{ right: "29%", top: 420 }}>{"{ ^-^ }"}</span>
+        {DESK.map((d) => (
+          <div key={d.label} className={`float ${d.cls ?? ""}`} style={d.pos}>
+            <div className="desk-icon"><PixelIcon name={d.icon} size={44} motion={d.motion} /><span>{d.label}</span></div>
+          </div>
+        ))}
+        <div className="float float-hide-md" style={{ left: "3%", top: 300 }}><span className="sticker-note">edit: thanks for the gold, kind stranger</span></div>
+        <div className="float float-hide-md" style={{ right: "21%", top: 250 }}><span className="sticker-stamp">no spam</span></div>
+        <span className="kao" style={{ left: "29%", top: 60 }}>^ ω ^</span>
+        <span className="kao" style={{ right: "29%", top: 52 }}>{"¯\\_(ツ)_/¯"}</span>
 
         <div className="wrap hero-center">
           <h1 className="hero-h1 rise">
-            <span className="wordmark">supermeta</span>
+            <span className="wordmark">super<span className="px-word">meta</span></span>
             <span className="tagline">the reddit marketing agency for startups and b2b saas</span>
           </h1>
           <p className="hero-sub rise rise-2">
-            buyers ask reddit. google ranks the thread. ai repeats it. we get your brand into those threads, the honest way. reddit marketing for the ai search era.
+            buyers ask reddit. google ranks the thread. ai repeats it. we get your brand into those threads, the honest way.
           </p>
           <div className="hero-ctas rise rise-3">
             <div>
-              <a href={BOOK_URL} className="btn btn-blue">book a free call</a>
+              <a href={BOOK_URL} className="btn btn-primary">book a free call</a>
               <div className="btn-note">30 minutes. we show you the threads.</div>
             </div>
             <div>
-              <a href="#services" className="btn btn-gray">see the services</a>
+              <a href="#services" className="btn btn-secondary">see the services</a>
               <div className="btn-note">6 services. reddit only.</div>
             </div>
           </div>
@@ -123,7 +116,9 @@ export default function Home() {
 
         <div className="wrap">
           <div className="hero-stage rise rise-3">
-            <JourneyWindow />
+            <Window title="how-buyers-shop-now.mp4" tag="sample" caption="how-buyers-shop-now.mp4 · made with remotion">
+              <Motion clip="hero" />
+            </Window>
           </div>
         </div>
       </section>
@@ -132,37 +127,33 @@ export default function Home() {
       <section className="sec" id="features" aria-labelledby="features-h">
         <div className="wrap">
           <div className="sec-head">
-            <span className="pill">what we do</span>
-            <h2 id="features-h" className="display h-sec">three plays. one channel.</h2>
-            <p className="lede muted">Buyers search Google, read Reddit, then ask AI. We work all three places your category gets decided.</p>
+            <span className="pill"><PixelIcon name="scroll" size={16} /> tl;dr</span>
+            <h2 id="features-h" className="display h-sec">three plays. <span className="px-word">one</span> channel.</h2>
+            <p className="lede">Buyers search Google, read Reddit, then ask AI. We work all three places your category gets decided.</p>
           </div>
           {FEATURES.map((f, i) => (
             <div key={f.title} className={`feat-row${i % 2 ? " flip" : ""}`}>
+              <div className="feat-copy">
+                <PixelIcon name={f.icon} size={40} motion={f.motion} className="feat-ico" />
+                <h3 className="h-feat">{f.title}</h3>
+                <p className="small" style={{ margin: 0 }}>{f.body}</p>
+                <Link href={f.href} className="feat-more">{f.more} <Px name="arrow-right" size={14} /></Link>
+              </div>
               <div className="feat-media">
                 <Window title={f.file} tag="sample">{f.media}</Window>
-              </div>
-              <div className="feat-copy">
-                {f.bubble ? (
-                  <div className="bubble-row"><span className="bubble">{f.bubble}</span></div>
-                ) : (
-                  <Wave />
-                )}
-                <h3 className="h-feat">{f.title}</h3>
-                <p className="small">{f.body}</p>
-                <Link href={f.href} className="feat-more">{f.more} →</Link>
               </div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* ── SERVICES (Finder) ── */}
+      {/* ── SERVICES ── */}
       <section className="sec-tight" id="services" aria-labelledby="services-h">
         <div className="wrap">
           <div className="sec-head">
-            <span className="pill">services</span>
+            <span className="pill"><PixelIcon name="diamond" size={16} /> services</span>
             <h2 id="services-h" className="display h-sec">reddit marketing services</h2>
-            <p className="lede muted">Start with the strategy, add the parts you need. Every service runs on your brand&apos;s own, clearly labeled presence.</p>
+            <p className="lede">Start with the strategy, add the parts you need. Every service runs on your brand&apos;s own, clearly labeled presence.</p>
           </div>
           <ServiceFinder items={SERVICES} full />
           <p className="small" style={{ textAlign: "center", marginTop: 18 }}>
@@ -175,7 +166,7 @@ export default function Home() {
       <section className="sec" aria-labelledby="ba-h">
         <div className="wrap">
           <div className="sec-head">
-            <span className="pill">before and after</span>
+            <span className="pill"><PixelIcon name="fkey" size={16} /> before / after</span>
             <h2 id="ba-h" className="display h-sec">stop letting competitors own the reddit answer</h2>
           </div>
           <div className="ba">
@@ -185,7 +176,7 @@ export default function Home() {
                 <li>Your competitor gets mentioned. You do not.</li>
                 <li>Google ranks that thread on page one.</li>
                 <li>AI assistants read it and repeat the shortlist.</li>
-                <li>You find out when a lost deal says &quot;saw it on Reddit&quot;.</li>
+                <li>Press F for the deal you never knew about.</li>
               </ol>
             </Window>
             <Window title="with-supermeta.txt" tint="green" className="ba-good">
@@ -201,18 +192,16 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── THE THESIS (notes) ── */}
+      {/* ── OP'S NOTES ── */}
       <section className="sec" aria-labelledby="notes-h">
         <div className="wrap">
-          <div className="sec-head" style={{ marginBottom: 24 }}>
-            <span className="pill">the thesis</span>
+          <div className="sec-head">
+            <span className="pill"><PixelIcon name="bubble" size={16} /> op&apos;s notes</span>
             <h2 id="notes-h" className="sr-only">Why SuperMeta does Reddit only</h2>
           </div>
           <div className="notes-stage">
-            <div className="folder-fan left" aria-hidden="true">
-              {FAN_LEFT.map((c, i) => <i key={c} style={{ background: c, marginLeft: i * 14 }} />)}
-            </div>
-            <Window title="notes" className="notes">
+            <div className="icon-stack left" aria-hidden="true">{STACK_L.map((n) => <PixelIcon key={n} name={n} size={44} />)}</div>
+            <Window title="op-notes.txt" tint="yellow" className="notes">
               <div className="notes-body">
                 <p>Most agencies treat Reddit like an ad channel. Post a link, hope, get removed.</p>
                 <p>We think that is backwards. Reddit is where buyers compare notes before they ever talk to sales, and it is one of the sources Google and AI assistants lean on hardest.</p>
@@ -220,36 +209,34 @@ export default function Home() {
                 <p>So we do one thing: Reddit. We learn each subreddit&apos;s rules, show up as a clearly labeled brand, help first, and measure what matters: the threads you are in, where they rank, and who cites them.</p>
                 <p className="notes-caret">No bought accounts. No upvote games. No fake reviews. Slower than spam, and the only version that lasts.</p>
                 <div className="notes-sign">
-                  <span className="who"><i>s</i><span>the supermeta team<br /><span className="tiny">lead strategist: 95,000+ karma, earned the slow way</span></span></span>
+                  <span className="who"><PixelIcon name="upvote" size={28} /><span>the supermeta team <span className="op">OP</span><br /><span className="tiny">lead strategist: 95,000+ karma, earned the slow way</span></span></span>
                   <span className="sig">supermeta</span>
                 </div>
               </div>
             </Window>
-            <div className="folder-fan right" aria-hidden="true">
-              {FAN_RIGHT.map((c, i) => <i key={c} style={{ background: c, marginRight: i * 14 }} />)}
-            </div>
+            <div className="icon-stack right" aria-hidden="true">{STACK_R.map((n) => <PixelIcon key={n} name={n} size={44} />)}</div>
           </div>
         </div>
       </section>
 
-      {/* ── RECEIPTS ── */}
+      {/* ── SOURCE? ── */}
       <section className="sec" aria-labelledby="receipts-h">
         <div className="wrap">
-          <div className="sec-head" style={{ marginBottom: 32 }}>
-            <span className="pill">the receipts</span>
+          <div className="sec-head" style={{ marginBottom: 24 }}>
+            <span className="pill"><PixelIcon name="scroll" size={16} /> source?</span>
           </div>
-          <div className="marquee" style={{ marginBottom: 40, position: "relative" }}>
+          <div className="marquee" style={{ marginBottom: 40 }}>
             <span className="ghost" aria-hidden="true">ask reddit first</span>
-            <h2 id="receipts-h" className="display" style={{ fontSize: "inherit" }}>buyers ask reddit first</h2>
+            <h2 id="receipts-h" className="display" style={{ fontSize: "inherit" }}>buyers ask <span className="px-word">reddit</span> first</h2>
             <span className="ghost" aria-hidden="true">buyers ask</span>
           </div>
           <div className="wall">
             {RECEIPTS.map((r, i) => (
-              <Window key={r.num} tint={r.tint as Tint} closeX style={{ ["--tilt" as string]: `${[-1, 0.6, -0.4, 0.8, -0.8, 0.4][i]}deg` }}>
+              <Window key={r.num} tint={r.tint as Tint} closeX style={{ ["--tilt" as string]: `${[-0.8, 0.5, -0.3, 0.6, -0.6, 0.3][i]}deg` }}>
                 <div className="wall-card">
                   <div className="wall-who">
                     <span><b>{r.who}</b><small>{r.handle}</small></span>
-                    <span className="wall-follow" aria-hidden="true">+</span>
+                    <PixelIcon name={r.icon} size={30} />
                   </div>
                   <div className="wall-num">{r.num}</div>
                   <p className="wall-text">{r.text}</p>
@@ -257,21 +244,22 @@ export default function Home() {
                 </div>
               </Window>
             ))}
-            <div className="float float-hide-md" style={{ right: -40, top: -70 }}><span className="sticker-oval">no spam!</span></div>
+            <div className="float float-hide-md" style={{ right: -30, top: -64 }}><span className="sticker-oval">no spam!</span></div>
           </div>
           <div className="wall-bar">
-            130.3 million daily uniques on Reddit. Some of them are shopping for what you sell. <a className="link" href={BOOK_URL} style={{ textDecoration: "underline" }}>let&apos;s find them</a>
+            <PixelIcon name="banana" size={32} motion="wiggle" />
+            <span><b>banana for scale:</b> 130.3 million daily uniques on Reddit. Some of them are shopping for what you sell. <a className="link" href={BOOK_URL}>let&apos;s find them</a></span>
           </div>
         </div>
       </section>
 
-      {/* ── HOW IT WORKS ── */}
+      {/* ── ELI5: HOW IT WORKS ── */}
       <section className="sec" id="how" aria-labelledby="how-h">
         <div className="wrap">
           <div className="sec-head">
-            <span className="pill">how it works</span>
-            <h2 id="how-h" className="display h-sec">your first 90 days</h2>
-            <p className="lede muted">Early signals in weeks. Trust in a month or two. Pipeline in a few months. Reddit compounds, it does not spike.</p>
+            <span className="pill"><PixelIcon name="crayon" size={16} /> eli5</span>
+            <h2 id="how-h" className="display h-sec">your first <span className="px-word">90</span> days</h2>
+            <p className="lede">Early signals in weeks. Trust in a month or two. Pipeline in a few months. Reddit compounds, it does not spike.</p>
           </div>
           <Window title="first-90-days.sh" tint="dark" className="term" style={{ maxWidth: 860, margin: "0 auto" }}>
             <div className="term-body">
@@ -294,20 +282,21 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── PLANS ── */}
+      {/* ── PICK YOUR FLAIR ── */}
       <section className="sec" id="plans" aria-labelledby="plans-h">
         <div className="wrap">
           <div className="sky">
             <div className="sec-head" style={{ marginBottom: 0 }}>
-              <span className="pill">plans</span>
+              <span className="pill"><PixelIcon name="gold" size={16} /> pick your flair</span>
               <h2 id="plans-h" className="display h-sec">start where you are</h2>
               <p className="lede">three ways in. billed monthly. scoped on a free call.</p>
             </div>
             <div className="plans">
               {PLANS.map((p) => (
-                <Window key={p.name} title={p.name} tint={p.popular ? "sky" : undefined} className="plan" style={{ position: "relative" }}>
-                  {p.popular ? <span className="pill plan-pop">popular</span> : null}
+                <Window key={p.name} title={`${p.name}.flair`} tint={p.popular ? "sky" : undefined} className="plan" style={{ position: "relative" }}>
+                  {p.popular ? <span className="pill plan-pop">most upvoted</span> : null}
                   <div className="plan-head">
+                    <PixelIcon name={p.icon} size={40} motion={p.popular ? "bob" : "none"} />
                     <h3 className="plan-name">{p.name}</h3>
                     <p className="plan-line">{p.line}</p>
                     <span className="tiny">{p.best}</span>
@@ -315,10 +304,10 @@ export default function Home() {
                   <div className="plan-mid">
                     <span className="plan-big">{p.big}</span>
                     <span className="tiny">{p.unit}</span>
-                    <a href={BOOK_URL} className={`btn btn-sm ${p.popular ? "btn-blue" : "btn-gray"}`} style={{ marginTop: 10 }}>{p.cta}</a>
+                    <a href={BOOK_URL} className={`btn btn-sm ${p.popular ? "btn-primary" : "btn-secondary"}`} style={{ marginTop: 12 }}>{p.cta}</a>
                   </div>
                   <ul className="plan-list">
-                    {p.items.map((it) => <li key={it}>{it}</li>)}
+                    {p.items.map((it) => <li key={it}><Px name="check" size={16} />{it}</li>)}
                   </ul>
                 </Window>
               ))}
@@ -327,24 +316,24 @@ export default function Home() {
             <Window title="add-ons" tint="dark" className="term terminal-cta">
               <div className="term-body">
                 <p><b>{"< add-ons >"}</b>more keywords. more posts and comments. more leads. more subreddits. more ad campaigns. tell us what you need and we will scope it.</p>
-                <a href={BOOK_URL} className="btn btn-gray btn-sm mono">ask us</a>
+                <a href={BOOK_URL} className="btn btn-secondary btn-sm">ask us</a>
               </div>
             </Window>
           </div>
         </div>
       </section>
 
-      <Faq items={HOME_FAQS} lede="what to know about reddit marketing, bans, ai answers and getting started." />
+      <Faq items={HOME_FAQS} pill="ama" title="ask us anything" lede="The questions founders ask before they hire a Reddit marketing agency." />
 
       {/* ── CTA ── */}
-      <section className="sec dotted" aria-labelledby="cta-h">
+      <section className="sec" aria-labelledby="cta-h">
         <div className="wrap cta-band">
-          <span className="pill">ready when you are</span>
-          <h2 id="cta-h" className="display h-sec">be the answer buyers find on reddit</h2>
-          <p className="lede muted">A free 30-minute call. We pull up the threads in your category and show you who gets recommended today.</p>
-          <div className="hero-ctas" style={{ marginTop: 6 }}>
-            <a href={BOOK_URL} className="btn btn-blue">book a free call</a>
-            <Link href="/reddit-seo" className="btn btn-gray">start with the audit</Link>
+          <span className="pill"><PixelIcon name="upvote" size={16} /> take my upvote</span>
+          <h2 id="cta-h" className="display h-sec">be the answer buyers find on <span className="px-word">reddit</span></h2>
+          <p className="lede">A free 30-minute call. We pull up the threads in your category and show you who gets recommended today.</p>
+          <div className="hero-ctas">
+            <a href={BOOK_URL} className="btn btn-primary">book a free call</a>
+            <Link href="/reddit-seo" className="btn btn-secondary">start with the audit</Link>
           </div>
         </div>
       </section>

@@ -1,4 +1,5 @@
 import { Comment, Downvote, Search, Upvote } from "./Icons";
+import PixelIcon, { Px } from "./PixelIcon";
 
 // Stylized, generic mock UIs. Every one of them shows sample data for a made-up brand ("acme").
 
@@ -178,7 +179,7 @@ export function SubredditCard() {
     <div className="sbr">
       <div className="sbr-banner" />
       <div className="sbr-head">
-        <span className="sbr-icon">a</span>
+        <span className="sbr-icon"><PixelIcon name="heart" size={26} /></span>
         <div>
           <div className="sbr-name">r/acme</div>
           <div className="tiny">community for acme users · sample</div>
@@ -206,10 +207,10 @@ export function AdCard() {
         <span className="tiny">sample</span>
       </div>
       <p className="rd-title" style={{ marginTop: 6 }}>We read 10,000 r/SaaS threads about feedback tools. Here is what teams actually complain about.</p>
-      <div className="ad-media">acme</div>
+      <div className="ad-media"><PixelIcon name="rocket" size={64} motion="bob" /></div>
       <div className="ad-row">
         <span className="rd-votes"><Upvote /> 96</span>
-        <span className="btn btn-blue btn-sm" style={{ height: 28, fontSize: 13 }}>learn more</span>
+        <span className="btn btn-primary btn-sm" style={{ height: 28, fontSize: 13 }}>learn more</span>
       </div>
       <div className="ad-stats">
         <div><b>3</b><span>campaigns live</span></div>
@@ -230,7 +231,7 @@ export function RulesCheck() {
         "sounds like a person, not a brochure",
       ].map((t) => (
         <div key={t} style={{ display: "flex", gap: 8, padding: "4px 0" }}>
-          <span style={{ color: "#1d9a45" }}>✓</span>
+          <span style={{ color: "#1d9a6a" }}><Px name="check" size={16} /></span>
           <span>{t}</span>
         </div>
       ))}

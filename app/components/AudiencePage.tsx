@@ -5,6 +5,7 @@ import Window, { type Tint } from "./Window";
 import Faq from "./Faq";
 import JsonLd from "./JsonLd";
 import ServiceFinder from "./ServiceFinder";
+import PixelIcon from "./PixelIcon";
 import { BOOK_URL, SITE, serviceBySlug, type Audience } from "../lib/site";
 
 export function audienceMetadata(a: Audience): Metadata {
@@ -56,18 +57,18 @@ export default function AudiencePage({ a, media }: { a: Audience; media: ReactNo
             <p className="lede">{a.intro}</p>
             <div className="hero-ctas" style={{ marginTop: 26 }}>
               <div>
-                <a href={BOOK_URL} className="btn btn-blue">book a free call</a>
+                <a href={BOOK_URL} className="btn btn-primary">book a free call</a>
                 <div className="btn-note">30 minutes. no pitch deck.</div>
               </div>
               <div>
-                <Link href="/reddit-seo" className="btn btn-gray">start with the audit</Link>
+                <Link href="/reddit-seo" className="btn btn-secondary">start with the audit</Link>
                 <div className="btn-note">reddit seo and aeo</div>
               </div>
             </div>
           </div>
           <div className="svc-media rise rise-2">
             <Window title={a.file} tag="sample" caption={a.file}>{media}</Window>
-            <span className="kao" style={{ right: 4, top: -30 }}>^ ω ^</span>
+            <div className="float" style={{ left: -30, bottom: -18 }}><PixelIcon name="banana" size={56} motion="wiggle" /></div>
           </div>
         </div>
       </section>
@@ -75,7 +76,7 @@ export default function AudiencePage({ a, media }: { a: Audience; media: ReactNo
       <section className="sec" aria-labelledby="plays-h">
         <div className="wrap">
           <div className="sec-head">
-            <span className="pill">what works</span>
+            <span className="pill"><PixelIcon name="fire" size={16} /> what works</span>
             <h2 id="plays-h" className="display h-sec">the plays we run</h2>
           </div>
           <div className="grid-cards">
@@ -92,7 +93,7 @@ export default function AudiencePage({ a, media }: { a: Audience; media: ReactNo
       <section className="sec-tight" aria-labelledby="subs-h">
         <div className="wrap">
           <div className="sec-head">
-            <span className="pill">where they hang out</span>
+            <span className="pill"><PixelIcon name="popcorn" size={16} /> where they hang out</span>
             <h2 id="subs-h" className="display h-sec">subreddits we often start with</h2>
             <p className="lede muted">Examples only. The right list depends on your buyer, and every one has its own rules.</p>
           </div>
@@ -108,7 +109,7 @@ export default function AudiencePage({ a, media }: { a: Audience; media: ReactNo
       <section className="sec-tight" aria-labelledby="svc-h">
         <div className="wrap">
           <div className="sec-head" style={{ marginBottom: 28 }}>
-            <span className="pill">services</span>
+            <span className="pill"><PixelIcon name="diamond" size={16} /> services</span>
             <h2 id="svc-h" className="display h-sec">where to start</h2>
           </div>
           <ServiceFinder items={services} />
@@ -118,14 +119,14 @@ export default function AudiencePage({ a, media }: { a: Audience; media: ReactNo
         </div>
       </section>
 
-      <Faq items={a.faqs} title={`reddit marketing ${a.name} faq`} />
+      <Faq items={a.faqs} pill="ama" title={`reddit marketing ${a.name} faq`} />
 
       <section className="sec dotted" aria-labelledby="cta-h">
         <div className="wrap cta-band">
-          <span className="pill">ready when you are</span>
+          <span className="pill"><PixelIcon name="upvote" size={16} /> take my upvote</span>
           <h2 id="cta-h" className="display h-sec">see where you stand on reddit</h2>
           <p className="lede muted">A free 30-minute call. We show you the threads in your category and who gets recommended today.</p>
-          <a href={BOOK_URL} className="btn btn-blue">book a free call</a>
+          <a href={BOOK_URL} className="btn btn-primary">book a free call</a>
         </div>
       </section>
       <JsonLd data={schema} />

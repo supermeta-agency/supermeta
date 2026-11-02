@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Window from "../components/Window";
 import JsonLd from "../components/JsonLd";
+import PixelIcon from "../components/PixelIcon";
 import { BOOK_URL, SITE } from "../lib/site";
 
 export const metadata: Metadata = {
@@ -38,7 +39,7 @@ export default function About() {
     <>
       <section className="svc-hero dotted">
         <div className="wrap" style={{ textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center" }}>
-          <span className="pill rise">about</span>
+          <span className="pill rise"><PixelIcon name="cake" size={16} /> about</span>
           <h1 className="rise" style={{ maxWidth: 820 }}>a reddit-only marketing agency. that is the whole point.</h1>
           <p className="lede rise rise-2" style={{ maxWidth: 600 }}>
             We used to offer PR, SEO, quests and product builds. Now we do Reddit, and nothing else. Here is why, and the rules we work by.
@@ -71,7 +72,7 @@ export default function About() {
       <section className="sec-tight" id="rules" aria-labelledby="rules-h">
         <div className="wrap">
           <div className="sec-head">
-            <span className="pill">our rules</span>
+            <span className="pill"><PixelIcon name="scroll" size={16} /> our rules</span>
             <h2 id="rules-h" className="display h-sec">the rules we never break</h2>
             <p className="lede muted">They make the work slower. They are also why it lasts.</p>
           </div>
@@ -86,7 +87,7 @@ export default function About() {
       <section className="sec-tight" aria-labelledby="who-h">
         <div className="wrap">
           <div className="sec-head">
-            <span className="pill">who we work with</span>
+            <span className="pill"><PixelIcon name="heart" size={16} /> who we work with</span>
             <h2 id="who-h" className="display h-sec">built for founders</h2>
           </div>
           <div className="grid-cards">
@@ -102,12 +103,12 @@ export default function About() {
 
       <section className="sec dotted" aria-labelledby="cta-h">
         <div className="wrap cta-band">
-          <span className="pill">say hi</span>
+          <span className="pill"><PixelIcon name="bubble" size={16} /> say hi</span>
           <h2 id="cta-h" className="display h-sec">let&apos;s look at your threads</h2>
           <p className="lede muted">
             Book a free 30-minute call or email <a className="link" href={`mailto:${SITE.email}`}>{SITE.email}</a>.
           </p>
-          <a href={BOOK_URL} className="btn btn-blue">book a free call</a>
+          <a href={BOOK_URL} className="btn btn-primary">book a free call</a>
         </div>
       </section>
       <JsonLd data={schema} />
