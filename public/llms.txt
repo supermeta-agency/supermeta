@@ -1,0 +1,32 @@
+# SuperMeta
+
+> SuperMeta is a Reddit-only marketing agency for startups and B2B brands (B2B SaaS, AI apps, devtools, fintech), mostly founders in the US and Europe. We get brands into the Reddit threads buyers read, Google ranks and AI answers cite, through honest, disclosed participation from the brand's own account.
+
+Contact: hello@supermeta.agency
+
+## Services
+
+- [Reddit SEO and AEO strategy](https://supermeta.agency/reddit-seo): audit of the threads Google ranks and AI answers cite for a category, plus a monthly playbook (subreddit map, thread targets, narratives, keywords, posting windows). The usual starting point.
+- [Branded Reddit posting and commenting](https://supermeta.agency/reddit-posting): posts and comments from the brand's own, clearly labeled account, checked against each subreddit's rules and approved by the client.
+- [Reddit keyword monitoring](https://supermeta.agency/reddit-monitoring): daily, human-filtered report of brand, category and competitor threads worth answering.
+- [Reddit lead discovery and outreach](https://supermeta.agency/reddit-lead-generation): qualified Reddit users asking for what the client sells, handed over with context. Thread first, no spam messages.
+- [Subreddit setup and management](https://supermeta.agency/reddit-community-management): one-time subreddit setup, then weekly rituals, moderation, growth and posting.
+- [Reddit Ads management](https://supermeta.agency/reddit-ads): campaign setup, community targeting, native creative, conversion tracking and weekly optimization. Ad budget is separate.
+
+## Who it is for
+
+- [Reddit marketing for SaaS and B2B](https://supermeta.agency/reddit-marketing-for-saas): comparison threads, use cases, switching threads and AI answer tracking for B2B software.
+- [Reddit marketing for startups](https://supermeta.agency/reddit-marketing-for-startups): first users, launches, founder vs brand accounts, for pre-seed to Series A teams in AI, devtools, fintech and SaaS.
+
+## How we work
+
+- Billed monthly; subreddit setup is one-time. Scoped on a free 30-minute call.
+- We follow every subreddit's rules and always disclose when the brand is talking.
+- We never buy, rent or farm accounts, never manipulate votes, and never post fake reviews.
+- We do not guarantee Google rankings or AI citations. We report permalinks, rankings, AI citations, share of voice and leads.
+
+## More
+
+- [All services](https://supermeta.agency/services)
+- [About and our rules](https://supermeta.agency/about)
+- [FAQ](https://supermeta.agency/#faq)
