@@ -1,128 +1,117 @@
-import Nav from "../components/Nav";
+import type { Metadata } from "next";
+import Window from "../components/Window";
+import JsonLd from "../components/JsonLd";
+import PixelIcon from "../components/PixelIcon";
+import { BOOK_URL, SITE } from "../lib/site";
 
-const stats = [
-  {
-    heading: "2 Verticals",
-    body: "Development and marketing under one roof, built to work together.",
-  },
-  {
-    heading: "8 Core Services",
-    body: "Chosen because we are exceptional at them, not because they fill a brochure.",
-  },
-  {
-    heading: "1 Rule",
-    body: "We only take on work we are confident we can deliver exceptionally well.",
-  },
+export const metadata: Metadata = {
+  title: { absolute: "About SuperMeta: A Reddit-First Marketing Agency" },
+  description:
+    "SuperMeta is a Reddit-first marketing agency for startups and B2B brands. Small senior team, honest disclosed participation, and the rules we never break.",
+  alternates: { canonical: "/about" },
+};
+
+const RULES = [
+  ["Follow every subreddit's rules.", "We read them before we post, and we skip communities where a brand does not belong."],
+  ["Always say who is talking.", "Brand accounts are named as the brand. Any product mention comes with clear disclosure."],
+  ["Help first, mention second.", "A reply has to be useful even if it never names your product."],
+  ["No bought, rented or farmed accounts.", "You own your brand account and its history, start to finish."],
+  ["No vote manipulation.", "No upvote services, no vote rings, no asking people to brigade a thread."],
+  ["No fake reviews or sockpuppets.", "We never pose as customers or invent experiences."],
+  ["No guarantees we cannot keep.", "Google and AI systems decide what they show. We promise the work and show you the receipts."],
+];
+
+const WHO = [
+  ["startup founders", "Pre-seed to Series A teams in the US and Europe, often YC and similar programs, where the founder still does sales."],
+  ["b2b saas and devtools", "Products where buyers ask peers for honest takes before they book a demo."],
+  ["ai apps and fintech", "Fast-moving categories where Reddit threads and AI answers shape the shortlist."],
 ];
 
 export default function About() {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    url: `${SITE.url}/about`,
+    name: "About SuperMeta",
+    about: { "@id": `${SITE.url}/#org` },
+  };
   return (
-    <div className="min-h-screen" style={{ background: "#ffffff", color: "#0a0a0f" }}>
-      <Nav active="About" />
-
-      {/* HERO */}
-      <section style={{ padding: "160px clamp(24px, 4vw, 56px) 100px", background: "#ffffff", borderBottom: "1px solid rgba(0,0,0,0.06)" }}>
-        <div className="max-w-[1200px] mx-auto">
-          <div style={{ display: "inline-flex", alignItems: "center", gap: "10px", marginBottom: "32px" }}>
-            <span style={{ display: "block", width: "28px", height: "1px", background: "#9ca3af" }} />
-            <span style={{ fontFamily: "var(--font-inter)", fontSize: "11px", fontWeight: 500, color: "#9ca3af", letterSpacing: "0.14em", textTransform: "uppercase" as const }}>
-              Who We Are
-            </span>
-          </div>
-          <h1 style={{ fontFamily: "var(--font-syne)", fontWeight: 700, fontSize: "clamp(44px, 5.4vw, 78px)", lineHeight: 1.04, letterSpacing: "-0.042em", color: "#0a0a0f", margin: "0 0 28px", maxWidth: "860px" }}>
-            We Are Not a Big Agency. That Is the Point.
-          </h1>
-          <p style={{ fontFamily: "var(--font-inter)", fontSize: "18px", lineHeight: 1.65, color: "#6b7280", maxWidth: "540px", margin: 0 }}>
-            No account managers playing telephone. No junior teams running your campaigns. You work directly with the people doing the work.
+    <>
+      <section className="svc-hero dotted">
+        <div className="wrap" style={{ textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center" }}>
+          <span className="pill rise"><PixelIcon name="cake" size={16} /> about</span>
+          <h1 className="rise" style={{ maxWidth: 820 }}>a reddit-first marketing agency, because buyers ask reddit first.</h1>
+          <p className="lede rise rise-2" style={{ maxWidth: 600 }}>
+            We used to offer PR, SEO, quests and product builds. Now Reddit comes first, and everything we do starts there. Here is why, and the rules we work by.
           </p>
         </div>
       </section>
 
-      {/* BODY COPY */}
-      <section style={{ padding: "100px clamp(24px, 4vw, 56px)", background: "#f8f9fb" }}>
-        <div className="max-w-[1200px] mx-auto" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "clamp(48px, 6vw, 100px)", alignItems: "start" }}>
-          <div>
-            <p style={{ fontFamily: "var(--font-inter)", fontSize: "16px", fontWeight: 600, lineHeight: 1.6, color: "#0a0a0f", margin: "0 0 24px" }}>
-              We are a specialist agency built around two things: engineering products that hold up in production and marketing brands that get found, trusted, and chosen.
-            </p>
-            <p style={{ fontFamily: "var(--font-inter)", fontSize: "15px", lineHeight: 1.8, color: "#6b7280", margin: "0 0 16px" }}>
-              We started because we kept seeing the same problem. Founders were hiring three, four, five vendors to do what one aligned team could do better. So we built that team.
-            </p>
-            <p style={{ fontFamily: "var(--font-inter)", fontSize: "15px", lineHeight: 1.8, color: "#6b7280", margin: 0 }}>
-              We work with a small number of clients at a time. Not because we cannot handle more, but because quality demands focus. When you work with us, you are not a line item on a spreadsheet. You are a priority.
-            </p>
-          </div>
+      <section className="sec-tight">
+        <div className="prose">
+          <h2>why reddit, why now</h2>
+          <p>
+            Buyers have stopped trusting vendor pages on their own. They search &quot;best X reddit&quot;, read what real users said, and then ask an AI assistant, which reads the same threads. Reddit sits upstream of all of it.
+          </p>
+          <p>
+            That makes Reddit the highest-trust channel a brand can show up in, and the easiest one to get wrong. Post like an ad and you get removed. Show up like a useful person who happens to work on the product, and you can stay in a thread that ranks for years.
+          </p>
+          <h2>how we work</h2>
+          <ul>
+            <li><b>Small senior team.</b> No account managers passing notes. You work with the people doing the work.</li>
+            <li><b>Your accounts, your history.</b> We post from your clearly labeled brand account, and you keep everything we build.</li>
+            <li><b>Measured in threads, not vanity.</b> Permalinks, rankings, AI citations, share of voice and leads, reported every week.</li>
+            <li><b>Billed monthly.</b> We would rather earn next month than lock you in.</li>
+          </ul>
+          <p>
+            Our lead strategist&apos;s personal Reddit account has 95,000+ karma, earned the slow way: by being useful in public, one comment at a time. That is the same playbook we run for brands.
+          </p>
+        </div>
+      </section>
 
-          {/* Stats block */}
-          <div style={{ display: "flex", flexDirection: "column" as const, gap: "2px" }}>
-            {stats.map((s, i) => (
-              <div key={s.heading} style={{ padding: "36px 40px", background: i % 2 === 0 ? "#ffffff" : "rgba(0,0,0,0.02)", borderRadius: "12px", border: "1px solid rgba(0,0,0,0.07)" }}>
-                <h3 style={{ fontFamily: "var(--font-syne)", fontWeight: 700, fontSize: "clamp(28px, 2.8vw, 42px)", letterSpacing: "-0.04em", color: "#0a0a0f", margin: "0 0 10px" }}>
-                  {s.heading}
-                </h3>
-                <p style={{ fontFamily: "var(--font-inter)", fontSize: "14px", lineHeight: 1.65, color: "#6b7280", margin: 0 }}>
-                  {s.body}
-                </p>
-              </div>
+      <section className="sec-tight" id="rules" aria-labelledby="rules-h">
+        <div className="wrap">
+          <div className="sec-head">
+            <span className="pill"><PixelIcon name="scroll" size={16} /> our rules</span>
+            <h2 id="rules-h" className="display h-sec">the rules we never break</h2>
+            <p className="lede muted">They make the work slower. They are also why it lasts.</p>
+          </div>
+          <Window title="house-rules.txt" tint="yellow" className="rules">
+            <ol>
+              {RULES.map(([t, d]) => <li key={t}><b>{t}</b> {d}</li>)}
+            </ol>
+          </Window>
+        </div>
+      </section>
+
+      <section className="sec-tight" aria-labelledby="who-h">
+        <div className="wrap">
+          <div className="sec-head">
+            <span className="pill"><PixelIcon name="heart" size={16} /> who we work with</span>
+            <h2 id="who-h" className="display h-sec">built for founders</h2>
+          </div>
+          <div className="grid-cards">
+            {WHO.map(([t, d], i) => (
+              <Window key={t} title={`${t.split(" ")[0]}.txt`} tint={(["blue", "green", "peach"] as const)[i]}>
+                <h3>{t}</h3>
+                <p>{d}</p>
+              </Window>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section style={{ padding: "100px clamp(24px, 4vw, 56px)", background: "#0a0a0f" }}>
-        <div className="max-w-[1200px] mx-auto" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap" as const, gap: "40px" }}>
-          <div>
-            <h2 style={{ fontFamily: "var(--font-syne)", fontWeight: 700, fontSize: "clamp(28px, 3vw, 44px)", letterSpacing: "-0.03em", color: "#ffffff", margin: "0 0 12px" }}>
-              Ready to work with a team that is actually accountable?
-            </h2>
-            <p style={{ fontFamily: "var(--font-inter)", fontSize: "15px", color: "rgba(255,255,255,0.45)", margin: 0, lineHeight: 1.6, maxWidth: "480px" }}>
-              We keep our client list short on purpose. If you are building something worth caring about, let us talk.
-            </p>
-          </div>
-          <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" as const }}>
-            <a href="mailto:hello@supermeta.agency" style={{ fontFamily: "var(--font-inter)", fontSize: "14px", fontWeight: 600, color: "#0a0a0f", padding: "14px 28px", background: "#ffffff", borderRadius: "9px", textDecoration: "none", display: "inline-block" }}>
-              Work With Us
-            </a>
-            <a href="/portfolio" style={{ fontFamily: "var(--font-inter)", fontSize: "14px", fontWeight: 500, color: "rgba(255,255,255,0.6)", padding: "14px 24px", textDecoration: "none", display: "inline-flex", alignItems: "center", gap: "6px", border: "1px solid rgba(255,255,255,0.16)", borderRadius: "9px" }}>
-              See Our Work
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 7h9M7.5 3l4 4-4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>
-            </a>
-          </div>
+      <section className="sec dotted" aria-labelledby="cta-h">
+        <div className="wrap cta-band">
+          <span className="pill"><PixelIcon name="bubble" size={16} /> say hi</span>
+          <h2 id="cta-h" className="display h-sec">let&apos;s look at your threads</h2>
+          <p className="lede muted">
+            Book a free 30-minute call or email <a className="link" href={`mailto:${SITE.email}`}>{SITE.email}</a>.
+          </p>
+          <a href={BOOK_URL} className="btn btn-primary">book a free call</a>
         </div>
       </section>
-
-      {/* FOOTER */}
-      <footer style={{ padding: "64px clamp(24px, 4vw, 56px) 48px", background: "#0a0a0f", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
-        <div className="max-w-[1200px] mx-auto">
-          <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr", gap: "clamp(32px, 4vw, 80px)", marginBottom: "64px" }}>
-            <div>
-              <p style={{ fontFamily: "var(--font-syne)", fontWeight: 700, fontSize: "17px", color: "#ffffff", margin: "0 0 12px", letterSpacing: "-0.02em" }}>Super Meta</p>
-              <p style={{ fontFamily: "var(--font-inter)", fontSize: "13px", color: "rgba(255,255,255,0.35)", margin: 0 }}>Build It. Launch It. Grow It.</p>
-            </div>
-            <div>
-              <p style={{ fontFamily: "var(--font-inter)", fontSize: "11px", fontWeight: 500, color: "rgba(255,255,255,0.3)", letterSpacing: "0.12em", textTransform: "uppercase" as const, margin: "0 0 16px" }}>Services</p>
-              {[["Development", "/development"], ["Marketing", "/marketing"]].map(([label, href]) => (
-                <a key={label} href={href} style={{ display: "block", fontFamily: "var(--font-inter)", fontSize: "13px", color: "rgba(255,255,255,0.45)", textDecoration: "none", marginBottom: "10px" }}>{label}</a>
-              ))}
-            </div>
-            <div>
-              <p style={{ fontFamily: "var(--font-inter)", fontSize: "11px", fontWeight: 500, color: "rgba(255,255,255,0.3)", letterSpacing: "0.12em", textTransform: "uppercase" as const, margin: "0 0 16px" }}>Company</p>
-              {[["Work", "/portfolio"], ["About", "/about"], ["Contact", "#"]].map(([label, href]) => (
-                <a key={label} href={href} style={{ display: "block", fontFamily: "var(--font-inter)", fontSize: "13px", color: "rgba(255,255,255,0.45)", textDecoration: "none", marginBottom: "10px" }}>{label}</a>
-              ))}
-            </div>
-          </div>
-          <div style={{ borderTop: "1px solid rgba(255,255,255,0.06)", paddingTop: "24px", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap" as const, gap: "12px" }}>
-            <p style={{ fontFamily: "var(--font-inter)", fontSize: "12px", color: "rgba(255,255,255,0.25)", margin: 0 }}>© 2025 Super Meta. Built for founders who mean business.</p>
-            <div style={{ display: "flex", gap: "24px" }}>
-              {["Privacy Policy", "Terms and Conditions"].map(link => (
-                <a key={link} href="#" style={{ fontFamily: "var(--font-inter)", fontSize: "12px", color: "rgba(255,255,255,0.25)", textDecoration: "none" }}>{link}</a>
-              ))}
-            </div>
-          </div>
-        </div>
-      </footer>
-    </div>
+      <JsonLd data={schema} />
+    </>
   );
 }

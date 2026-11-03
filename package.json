@@ -1,5 +1,5 @@
 {
-  "name": "supermeta-agency",
+  "name": "supermeta-agency-v2",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,9 +9,11 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@remotion/player": "4.0.537",
     "next": "16.2.3",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "remotion": "4.0.537"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
