@@ -451,7 +451,7 @@ export const HOME_FAQS: Faq[] = [
     q: "what does a reddit marketing agency do?",
     a: [
       "A Reddit marketing agency gets your brand into the Reddit conversations where buyers compare options: the threads Google ranks, the ones AI answers cite, and the subreddits your customers read every day.",
-      "For us that covers Reddit SEO and AEO strategy, posting and commenting from your brand account, daily keyword monitoring, lead discovery, subreddit management and Reddit ads. We do Reddit only.",
+      "For us that covers Reddit SEO and AEO strategy, posting and commenting from your brand account, daily keyword monitoring, lead discovery, subreddit management and Reddit ads. We are Reddit-first: every engagement starts with the threads your buyers read.",
     ],
   },
   {

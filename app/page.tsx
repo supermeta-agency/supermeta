@@ -109,7 +109,7 @@ export default function Home() {
             </div>
             <div>
               <a href="#services" className="btn btn-secondary">see the services</a>
-              <div className="btn-note">6 services. reddit only.</div>
+              <div className="btn-note">6 services. reddit first.</div>
             </div>
           </div>
         </div>
@@ -197,7 +197,7 @@ export default function Home() {
         <div className="wrap">
           <div className="sec-head">
             <span className="pill"><PixelIcon name="bubble" size={16} /> op&apos;s notes</span>
-            <h2 id="notes-h" className="sr-only">Why SuperMeta does Reddit only</h2>
+            <h2 id="notes-h" className="sr-only">Why SuperMeta puts Reddit first</h2>
           </div>
           <div className="notes-stage">
             <div className="icon-stack left" aria-hidden="true">{STACK_L.map((n) => <PixelIcon key={n} name={n} size={44} />)}</div>
@@ -206,7 +206,7 @@ export default function Home() {
                 <p>Most agencies treat Reddit like an ad channel. Post a link, hope, get removed.</p>
                 <p>We think that is backwards. Reddit is where buyers compare notes before they ever talk to sales, and it is one of the sources Google and AI assistants lean on hardest.</p>
                 <p><span className="hl">If you are not in the thread, you are not in the answer.</span></p>
-                <p>So we do one thing: Reddit. We learn each subreddit&apos;s rules, show up as a clearly labeled brand, help first, and measure what matters: the threads you are in, where they rank, and who cites them.</p>
+                <p>So Reddit comes first. We learn each subreddit&apos;s rules, show up as a clearly labeled brand, help first, and measure what matters: the threads you are in, where they rank, and who cites them.</p>
                 <p className="notes-caret">No bought accounts. No upvote games. No fake reviews. Slower than spam, and the only version that lasts.</p>
                 <div className="notes-sign">
                   <span className="who"><PixelIcon name="upvote" size={28} /><span>the supermeta team <span className="op">OP</span><br /><span className="tiny">lead strategist: 95,000+ karma, earned the slow way</span></span></span>

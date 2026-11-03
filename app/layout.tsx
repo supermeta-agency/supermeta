@@ -40,7 +40,7 @@ const orgSchema = {
       url: SITE.url,
       logo: `${SITE.url}/supermeta-logo.jpg`,
       email: SITE.email,
-      description: "A Reddit-only marketing agency for startups and B2B SaaS.",
+      description: "A Reddit-first marketing agency for startups and B2B SaaS.",
       contactPoint: { "@type": "ContactPoint", contactType: "sales", email: SITE.email },
       areaServed: ["United States", "United Kingdom", "Europe"],
       knowsAbout: ["Reddit marketing", "Reddit SEO", "Answer engine optimization", "Reddit community management", "Reddit Ads"],

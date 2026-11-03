@@ -10,7 +10,7 @@ export default function ServiceFinder({ items, full = false }: { items: Service[
       {full ? (
         <>
           <div className="finder-tool">
-            <span>{items.length} items · reddit only</span>
+            <span>{items.length} items · reddit first</span>
             <span className="mono">~/supermeta/services</span>
           </div>
           <div className="finder-cols"><span>name</span><span>what it does</span><span>best for</span><span /></div>

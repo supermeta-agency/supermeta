@@ -5,9 +5,9 @@ import PixelIcon from "../components/PixelIcon";
 import { BOOK_URL, SITE } from "../lib/site";
 
 export const metadata: Metadata = {
-  title: { absolute: "About SuperMeta: A Reddit-Only Marketing Agency" },
+  title: { absolute: "About SuperMeta: A Reddit-First Marketing Agency" },
   description:
-    "SuperMeta is a Reddit-only marketing agency for startups and B2B brands. Small senior team, honest disclosed participation, and the rules we never break.",
+    "SuperMeta is a Reddit-first marketing agency for startups and B2B brands. Small senior team, honest disclosed participation, and the rules we never break.",
   alternates: { canonical: "/about" },
 };
 
@@ -40,9 +40,9 @@ export default function About() {
       <section className="svc-hero dotted">
         <div className="wrap" style={{ textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center" }}>
           <span className="pill rise"><PixelIcon name="cake" size={16} /> about</span>
-          <h1 className="rise" style={{ maxWidth: 820 }}>a reddit-only marketing agency. that is the whole point.</h1>
+          <h1 className="rise" style={{ maxWidth: 820 }}>a reddit-first marketing agency, because buyers ask reddit first.</h1>
           <p className="lede rise rise-2" style={{ maxWidth: 600 }}>
-            We used to offer PR, SEO, quests and product builds. Now we do Reddit, and nothing else. Here is why, and the rules we work by.
+            We used to offer PR, SEO, quests and product builds. Now Reddit comes first, and everything we do starts there. Here is why, and the rules we work by.
           </p>
         </div>
       </section>

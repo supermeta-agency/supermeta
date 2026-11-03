@@ -48,7 +48,7 @@ export default function Footer() {
           <span className="w">super<span className="px-word">meta</span></span>
           <span className="footer-scale"><PixelIcon name="banana" size={64} motion="wiggle" />banana for scale</span>
         </div>
-        <div className="footer-copy">© SuperMeta {new Date().getFullYear()}. reddit marketing, nothing else. edit: thanks for reading this far.</div>
+        <div className="footer-copy">© SuperMeta {new Date().getFullYear()}. reddit-first marketing for startups and b2b saas. edit: thanks for reading this far.</div>
       </div>
     </footer>
   );
